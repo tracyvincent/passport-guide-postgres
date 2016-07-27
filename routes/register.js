@@ -5,11 +5,11 @@ var path = require('path');
 var Users = require('../models/user');
 
 router.get('/', function(req, res, next){
-   res.sendFile(path.resolve(__dirname, '../public/views/register.html'));
+   res.sendFile(path.join(__dirname, '../public/views/register.html'));
 });
 
 router.post('/', function(req,res,next) {
-  Users.create(req.body, function (err, post) {
+  Users.makeUser(req.body.username, req.body.password, function (err) {
     if (err) {
       next(err);
     } else {
